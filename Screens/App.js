@@ -7,7 +7,7 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View,ScrollView,Alert} from 'react-native';
+import {Platform, StyleSheet, Text, View,ScrollView,Alert,ImageBackground} from 'react-native';
 
 import {  Card,List, ListItem,SearchBar, Button,Header,FormLabel,FormInput,Divider, Icon } from 'react-native-elements';
 
@@ -53,7 +53,11 @@ export default class App extends Component{
       from_id: this.from_id,
       to_id: this.to_id,
       from_name: this.state.FROM_NAME,
-      to_name: this.state.TO_NAME
+      to_name: this.state.TO_NAME,
+      lat1: this.from_id.split(",")[0],
+      lon1: this.from_id.split(",")[1],
+      lat2: this.to_id.split(",")[0],
+      lon2: this.to_id.split(",")[1],
     })
   }
   }
@@ -61,7 +65,28 @@ export default class App extends Component{
   render() {
     const { navigate } = this.props.navigation;
     return (
+      <ImageBackground  style={{
+        backgroundColor: '#ccc',
+        flex: 1,
+        position: 'absolute',
+        width: '100%',
+        height: '100%',
+        justifyContent: 'center',
+      }} source={require('../bg.jpg')}>
       <ScrollView>
+      <Card containerStyle={BaseStyles.CadStyle}>
+        <View style={BaseStyles.buttonHolder}>
+          <View style={BaseStyles.absolute}>
+        <Text style={{
+          fontSize: 18,
+          fontWeight: 'bold',
+          alignContent: 'center',
+          alignSelf: 'center',
+        }}>Area Guide</Text>
+
+        </View>
+        </View>
+        </Card>
       <Card containerStyle={BaseStyles.CadStyle}>
         <View style={BaseStyles.buttonHolder}>
           <View style={BaseStyles.absolute}>
@@ -116,7 +141,9 @@ export default class App extends Component{
           }}
         />
       </Card>
+      
       </ScrollView>
+      </ImageBackground>
     );
   }
 }

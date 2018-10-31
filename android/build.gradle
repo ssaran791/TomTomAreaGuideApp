@@ -37,3 +37,13 @@ task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
     distributionUrl = distributionUrl.replace("bin", "all")
 }
+allprojects {
+    repositories {
+        mavenLocal()
+        jcenter()
+        
+        flatDir {             // <------ add this line
+            dirs 'libs'       // <------ add this line
+        }                     // <------ add this line
+    }
+}
